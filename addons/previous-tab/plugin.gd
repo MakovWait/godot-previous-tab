@@ -116,6 +116,7 @@ class Switcher extends AcceptDialog:
 		_history_tree.hide_folding = true
 		_history_tree.item_activated.connect(_handle_confirmed)
 		_history_tree.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		_history_tree.focus_mode = Control.FOCUS_NONE
 		_root = _history_tree.create_item()
 		vb.add_child(_history_tree)
 		
@@ -178,7 +179,7 @@ class Switcher extends AcceptDialog:
 		var idx = selected.get_index()
 		idx = wrapi(idx - 1, 0, _root.get_child_count())
 		_root.get_child(idx).select(0)
-        _history_tree.ensure_cursor_is_visible()
+		_history_tree.ensure_cursor_is_visible()
 	
 	func _handle_confirmed():
 		var selected = _history_tree.get_selected()
@@ -209,6 +210,9 @@ class Switcher extends AcceptDialog:
 			item_to_select.select(0)
 		elif _root.get_child_count() > 1:
 			_root.get_child(1).select(0)
+		else:
+			_root.get_child(0).select(0)
+		_history_tree.ensure_cursor_is_visible()
 
 	func _clear_tree_item_children(item):
 		if not item: 
