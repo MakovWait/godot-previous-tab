@@ -161,7 +161,6 @@ class Switcher extends AcceptDialog:
 		popup_centered_ratio(0.3)
 		set_process_input.bind(true).call_deferred()
 		_update_tree()
-		_history_tree.grab_focus()
 	
 	func _select_next():
 		var selected = _history_tree.get_selected()
