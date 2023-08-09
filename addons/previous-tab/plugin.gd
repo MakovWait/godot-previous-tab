@@ -210,7 +210,7 @@ class Switcher extends AcceptDialog:
 			item_to_select.select(0)
 		elif _root.get_child_count() > 1:
 			_root.get_child(1).select(0)
-		else:
+		elif _root.get_child_count() > 0:
 			_root.get_child(0).select(0)
 		_history_tree.ensure_cursor_is_visible()
 
