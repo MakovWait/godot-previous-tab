@@ -14,6 +14,7 @@ func _enter_tree() -> void:
 	if OS.has_feature("macos"):
 		_base_sh_key = KEY_ALT
 	else:
+		_reset_default_tabs_shortcuts()
 		_base_sh_key = KEY_CTRL
 	
 	scene_changed.connect(_on_scene_changed)
@@ -82,6 +83,18 @@ func _on_script_tab_changed(idx):
 		_scripts_tab_container,
 		_scripts_item_list
 	))
+
+
+func _reset_default_tabs_shortcuts():
+	var default_sh = get_editor_interface().get_editor_settings().get("shortcuts") as Array
+	var check_sh = func(sh_name):
+		if len(default_sh.filter(func(x): return x.name == sh_name)) == 0:
+			get_editor_interface().get_editor_settings().set(
+				"shortcuts", 
+				[{ "name": sh_name, "shortcuts": []}]
+			)
+	check_sh.call("editor/next_tab")
+	check_sh.call("editor/prev_tab")
 
 
 func _add_to_history(el: HistoryItem):
