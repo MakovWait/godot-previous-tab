@@ -278,7 +278,7 @@ class HistoryItem:
 
 
 class HistoryItemScene extends HistoryItem:
-	var _editor_interface: EditorInterface
+	var _editor_interface
 	var _scene_path: String
 	var _icon
 	
